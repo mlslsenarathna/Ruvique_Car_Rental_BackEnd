@@ -1,7 +1,6 @@
 package ecom.mlslsenarathna.controller;
 
 import ecom.mlslsenarathna.mode.dto.CarDTO;
-import ecom.mlslsenarathna.mode.dto.CustomerDTO;
 import ecom.mlslsenarathna.service.CarService;
 import lombok.RequiredArgsConstructor;
 
@@ -31,6 +30,11 @@ public class CarController {
     public double getDrivenMileage(@PathVariable double newMileage,@RequestParam("id") String carId){
        return carService.getDrivenMileage(newMileage,carId);
     }
+    @PostMapping("/updateDailyRate/{dailyRate}")
+    public void updateDailyRates(@PathVariable double dailyRate,@RequestParam("id") String carId){
+        carService.updateDailyRate(dailyRate,carId);
+    }
+
 
 
 

@@ -9,4 +9,5 @@ public interface CustomerRepository extends JpaRepository<CustomerEntity,Integer
     CustomerEntity findByPhone(String phone);
 
     CustomerEntity findByEmail(String email);
+    CustomerEntity findTopByOrderByCustomerIdDesc();
 }

@@ -1,6 +1,9 @@
 package ecom.mlslsenarathna.controller;
 
+import ecom.mlslsenarathna.mode.dto.AddressDTO;
 import ecom.mlslsenarathna.mode.dto.CustomerDTO;
+import ecom.mlslsenarathna.repository.AddressRepository;
+import ecom.mlslsenarathna.service.AddressService;
 import ecom.mlslsenarathna.service.CustomerService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
     final CustomerService customerService;
+    final AddressService addressService;
     @GetMapping("/getCustomerName")
     public List<CustomerDTO> getCustomer(){
        return customerService.getCustomerList();
@@ -33,8 +37,14 @@ public class CustomerController {
     public void updateCustomer(@RequestBody CustomerDTO customerDTO){
         customerService.updateCustomerInfo(customerDTO);
     }
-
-
+    @GetMapping("/registerNewCustomer")
+    public void registerNewCustomer(@RequestBody CustomerDTO customerDTO){
+        customerService.registerNewCustomer(customerDTO);
+    }
+    @GetMapping("/getCustomerAddressByNic/{nic}")
+    public AddressDTO getCustomerAddressBynic(@PathVariable String nic){
+        return  addressService.getAddressByNic(nic);
+    }
 
 
 

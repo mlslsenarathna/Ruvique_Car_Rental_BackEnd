@@ -13,6 +13,7 @@ import lombok.*;
 public class CarEntity {
     @Id
     private String carId;
+    private String ownerId;
     private String brand;
     private String model;
     private String year;

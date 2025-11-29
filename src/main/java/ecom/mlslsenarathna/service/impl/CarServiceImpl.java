@@ -7,8 +7,8 @@ import ecom.mlslsenarathna.service.CarService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
-
 import java.util.Optional;
+
 
 @Service
 @RequiredArgsConstructor
@@ -34,19 +34,22 @@ public class CarServiceImpl implements CarService {
         CarEntity carEntity=car.orElseThrow();
         return mapper.map(carEntity,CarDTO.class);
     }
-
     @Override
     public void updateMileage(double milage, String carId) {
         CarDTO carDTO=getCarById(carId);
         carDTO.setMileage(milage);
         carRepository.save(mapper.map(carDTO,CarEntity.class));
     }
-
     @Override
     public double getDrivenMileage(double newMileage, String carId) {
         CarDTO carDTO=getCarById(carId);
+        updateMileage(newMileage,carId);
         return (newMileage-carDTO.getMileage());
     }
 
-
+    @Override
+    public void updateDailyRate(double dailyRate, String carId) {
+        CarDTO carDTO=getCarById(carId);
+        carDTO.setDailyRate(dailyRate);
+    }
 }

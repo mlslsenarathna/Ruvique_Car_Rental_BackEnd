@@ -9,6 +9,7 @@ import lombok.*;
 @ToString
 public class CarDTO {
     private String carId;
+    private String ownerId;
     private String brand;
     private String model;
     private String year;

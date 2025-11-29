@@ -7,10 +7,9 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CustomerDTO {
-    private int customerId;
-    private String name;
-    private String email;
+public class LogInResponse {
+    private String status;
+    private String message;
+    private String role;
     private String nic;
-    private String phone;
 }

@@ -2,7 +2,7 @@ package ecom.mlslsenarathna.service;
 
 
 import ecom.mlslsenarathna.mode.dto.CarDTO;
-import ecom.mlslsenarathna.mode.entity.CarEntity;
+
 
 public interface CarService {
     void registerNewCar(CarDTO carDTO);
@@ -14,4 +14,6 @@ public interface CarService {
     void updateMileage(double milage, String carId);
 
     double getDrivenMileage(double newMileage, String carId);
+
+    void updateDailyRate(double dailyRate, String carId);
 }

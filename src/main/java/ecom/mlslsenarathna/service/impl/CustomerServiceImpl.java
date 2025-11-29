@@ -1,8 +1,10 @@
 package ecom.mlslsenarathna.service.impl;
 
+import ecom.mlslsenarathna.mode.dto.AuthenticationDTO;
 import ecom.mlslsenarathna.mode.dto.CustomerDTO;
 import ecom.mlslsenarathna.mode.entity.CustomerEntity;
 import ecom.mlslsenarathna.repository.CustomerRepository;
+import ecom.mlslsenarathna.service.AuthenticationService;
 import ecom.mlslsenarathna.service.CustomerService;
 import ecom.mlslsenarathna.service.PasswordService;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +21,7 @@ import java.util.Optional;
 public class CustomerServiceImpl implements CustomerService {
     final CustomerRepository customerRepository;
     final PasswordService passwordService;
+    final AuthenticationService authenticationService;
     ModelMapper mapper=new ModelMapper();
     @Override
     public List<CustomerDTO> getCustomerList() {
@@ -55,9 +58,30 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public void updateCustomerInfo(CustomerDTO customerDTO) {
-        customerDTO.setPassword(passwordService.hashPassword(customerDTO.getPassword()));
         customerRepository.save(mapper.map(customerDTO,CustomerEntity.class));
-
     }
+
+    @Override
+    public void registerNewCustomer(CustomerDTO customerDTO) {
+        customerRepository.save(mapper.map(customerDTO,CustomerEntity.class));
+        String password=customerDTO.getNic().substring(0,5);
+        authenticationService.setAuthentication(new AuthenticationDTO(
+                customerDTO.getNic(),
+                password,
+                "Customer"
+                ));
+    }
+
+    @Override
+    public int getNewCustomerId() {
+        CustomerEntity customerEntity=getLastCustomer();
+        int lastId=customerEntity.getCustomerId();
+
+        return (lastId+1);
+    }
+    public CustomerEntity getLastCustomer(){
+        return customerRepository.findTopByOrderByCustomerIdDesc();
+    }
+
 
 }

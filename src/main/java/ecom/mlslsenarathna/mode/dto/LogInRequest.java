@@ -7,10 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class CustomerDTO {
-    private int customerId;
-    private String name;
-    private String email;
+public class LogInRequest {
     private String nic;
-    private String phone;
+    private String password;
 }

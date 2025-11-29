@@ -20,6 +20,6 @@ public class CustomerEntity {
     private String email;
     private String nic;
     private String phone;
-    private String address;
-    private String password;
+
+
 }
