@@ -4,9 +4,11 @@ import ecom.mlslsenarathna.mode.dto.CustomerDTO;
 import ecom.mlslsenarathna.mode.entity.CustomerEntity;
 import ecom.mlslsenarathna.repository.CustomerRepository;
 import ecom.mlslsenarathna.service.CustomerService;
+import ecom.mlslsenarathna.service.PasswordService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -16,6 +18,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class CustomerServiceImpl implements CustomerService {
     final CustomerRepository customerRepository;
+    final PasswordService passwordService;
     ModelMapper mapper=new ModelMapper();
     @Override
     public List<CustomerDTO> getCustomerList() {
@@ -49,4 +52,12 @@ public class CustomerServiceImpl implements CustomerService {
         CustomerEntity customerEntity=customerRepository.findByEmail(email);
         return mapper.map(customerEntity,CustomerDTO.class);
     }
+
+    @Override
+    public void updateCustomerInfo(CustomerDTO customerDTO) {
+        customerDTO.setPassword(passwordService.hashPassword(customerDTO.getPassword()));
+        customerRepository.save(mapper.map(customerDTO,CustomerEntity.class));
+
+    }
+
 }

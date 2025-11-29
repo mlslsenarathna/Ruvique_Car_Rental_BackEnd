@@ -3,10 +3,7 @@ package ecom.mlslsenarathna.controller;
 import ecom.mlslsenarathna.mode.dto.CustomerDTO;
 import ecom.mlslsenarathna.service.CustomerService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -15,12 +12,9 @@ import java.util.List;
 @RequiredArgsConstructor
 public class CustomerController {
     final CustomerService customerService;
-
-
     @GetMapping("/getCustomerName")
     public List<CustomerDTO> getCustomer(){
        return customerService.getCustomerList();
-
     }
     @GetMapping("/getCustomerById/{id}")
     public CustomerDTO getCustomerById(@PathVariable String id){
@@ -35,6 +29,13 @@ public class CustomerController {
     public  CustomerDTO getCustomerbyEmail(@PathVariable String email){
         return  customerService.getCustomerByEmail(email.trim());
     }
+    @PutMapping("/updateCustomer")
+    public void updateCustomer(@RequestBody CustomerDTO customerDTO){
+        customerService.updateCustomerInfo(customerDTO);
+    }
+
+
+
 
 
 }

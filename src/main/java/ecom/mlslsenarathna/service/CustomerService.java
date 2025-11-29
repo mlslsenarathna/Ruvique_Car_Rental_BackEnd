@@ -13,4 +13,6 @@ public interface CustomerService {
     CustomerDTO getCustomerByMobile(String mobile);
 
     CustomerDTO getCustomerByEmail(String email);
+
+    void updateCustomerInfo(CustomerDTO customerDTO);
 }
