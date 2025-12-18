@@ -1,8 +1,6 @@
 package ecom.mlslsenarathna.service.impl;
 
-import ecom.mlslsenarathna.mode.dto.AddressDTO;
-import ecom.mlslsenarathna.mode.dto.CustomerDTO;
-import ecom.mlslsenarathna.mode.dto.UserDTO;
+import ecom.mlslsenarathna.mode.dto.*;
 import ecom.mlslsenarathna.service.*;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -18,19 +16,19 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void registrationNewUser(UserDTO userDTO) {
-        /*    private int customerId;
-    private String name;
-    private String email;
-    private String nic;
-    private String phone;
-    private String address;*/
-        if (userDTO.getRole().equals("Customer")){
+        if (userDTO.getRole().equalsIgnoreCase("Customer")){
             customerService.registerNewCustomer(new CustomerDTO(
                     customerService.getNewCustomerId(),
                     userDTO.getName(),
                     userDTO.getEmail(),
                     userDTO.getNic(),
-                    userDTO.getPhone()
+                    userDTO.getPhone(),
+                    userDTO.getPhotoURL()
+            ));
+            authenticationService.setAuthentication(new AuthenticationDTO(
+                    userDTO.getNic(),
+                    userDTO.getPassword(),
+                    userDTO.getRole()
             ));
             addressService.addNewAddress(new AddressDTO(
                     userDTO.getNic(),
@@ -42,6 +40,32 @@ public class UserServiceImpl implements UserService {
                     userDTO.getCountry()
             ));
 
+
+        }else if(userDTO.getRole().equalsIgnoreCase("CarOwner")){
+            carOwnerService.registerNewCarOwner(new CarOwnerDTO(
+                    carOwnerService.getNewOwnerId(),
+                    userDTO.getName(),
+                    userDTO.getEmail(),
+                    userDTO.getNic(),
+                    userDTO.getPhone(),
+                    userDTO.getPhotoURL()
+
+            ));
+
+            authenticationService.setAuthentication(new AuthenticationDTO(
+                    userDTO.getNic(),
+                    userDTO.getPassword(),
+                    userDTO.getRole()
+            ));
+            addressService.addNewAddress(new AddressDTO(
+                    userDTO.getNic(),
+                    userDTO.getAddressLine1(),
+                    userDTO.getAdddressLine2(),
+                    userDTO.getCity(),
+                    userDTO.getDistrict(),
+                    userDTO.getPostalCode(),
+                    userDTO.getCountry()
+            ));
 
         }
     }

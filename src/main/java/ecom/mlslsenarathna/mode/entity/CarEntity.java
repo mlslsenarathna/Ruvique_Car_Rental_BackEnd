@@ -12,8 +12,9 @@ import lombok.*;
 @Entity(name = "car")
 public class CarEntity {
     @Id
-    private String carId;
-    private String ownerId;
+    private int carId;
+    private String category;
+    private String nic;
     private String brand;
     private String model;
     private String year;

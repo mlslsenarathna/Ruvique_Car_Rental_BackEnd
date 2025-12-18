@@ -2,6 +2,9 @@ package ecom.mlslsenarathna.service;
 
 
 import ecom.mlslsenarathna.mode.dto.CarDTO;
+import ecom.mlslsenarathna.mode.entity.CarEntity;
+
+import java.util.List;
 
 
 public interface CarService {
@@ -16,4 +19,12 @@ public interface CarService {
     double getDrivenMileage(double newMileage, String carId);
 
     void updateDailyRate(double dailyRate, String carId);
+
+    List<CarDTO> getCarsByModel(String model);
+
+    List<CarDTO> getCarsByCategory(String category);
+
+    List<CarDTO> getCarByTransmission(String transmission);
+
+    List<CarDTO> getCarByOwner(String nic);
 }

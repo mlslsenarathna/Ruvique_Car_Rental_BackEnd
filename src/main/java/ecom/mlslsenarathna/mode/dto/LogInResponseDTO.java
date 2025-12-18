@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LogInResponse {
+public class LogInResponseDTO {
     private String status;
     private String message;
     private String role;

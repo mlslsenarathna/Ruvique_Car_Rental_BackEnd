@@ -13,13 +13,15 @@ import lombok.*;
 @ToString
 @Entity(name = "customer")
 public class CustomerEntity {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
     private int customerId;
     private String name;
     private String email;
+    @Id
     private String nic;
     private String phone;
+    private String photoURL;
 
 
 }

@@ -1,10 +1,10 @@
 package ecom.mlslsenarathna.service;
 
 import ecom.mlslsenarathna.mode.dto.AuthenticationDTO;
-import ecom.mlslsenarathna.mode.dto.LogInResponse;
+import ecom.mlslsenarathna.mode.dto.LogInResponseDTO;
 
 public interface AuthenticationService {
     void setAuthentication(AuthenticationDTO authenticationDTO);
-    LogInResponse validateLogin(String nic, String plainPassword);
+    LogInResponseDTO validateLogin(String nic, String plainPassword);
 
 }

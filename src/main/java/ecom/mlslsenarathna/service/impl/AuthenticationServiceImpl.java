@@ -1,7 +1,7 @@
 package ecom.mlslsenarathna.service.impl;
 
 import ecom.mlslsenarathna.mode.dto.AuthenticationDTO;
-import ecom.mlslsenarathna.mode.dto.LogInResponse;
+import ecom.mlslsenarathna.mode.dto.LogInResponseDTO;
 import ecom.mlslsenarathna.mode.entity.AuthenticationEntity;
 import ecom.mlslsenarathna.repository.AuthenticationRepository;
 import ecom.mlslsenarathna.service.AuthenticationService;
@@ -23,20 +23,20 @@ public class AuthenticationServiceImpl implements AuthenticationService {
     }
 
     @Override
-    public LogInResponse validateLogin(String nic, String plainPassword) {
+    public LogInResponseDTO validateLogin(String nic, String plainPassword) {
 
         AuthenticationEntity auth = authenticationRepository.findById(nic).orElse(null);
 
         if (auth == null) {
-            return new LogInResponse("FAILED", "NIC not found", null, null);
+            return new LogInResponseDTO("FAILED", "NIC not found", null, null);
         }
 
         boolean isMatch = passwordService.checkPassword(plainPassword, auth.getPassword());
 
         if (!isMatch) {
-            return new LogInResponse("FAILED", "Invalid password", null, null);
+            return new LogInResponseDTO("FAILED", "Invalid password", null, null);
         }
-        return new LogInResponse(
+        return new LogInResponseDTO(
                 "SUCCESS",
                 "Login successful",
                 auth.getRole(),

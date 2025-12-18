@@ -1,8 +1,8 @@
 package ecom.mlslsenarathna.controller;
 
 import ecom.mlslsenarathna.mode.dto.AuthenticationDTO;
-import ecom.mlslsenarathna.mode.dto.LogInRequest;
-import ecom.mlslsenarathna.mode.dto.LogInResponse;
+import ecom.mlslsenarathna.mode.dto.LogInRequestDTO;
+import ecom.mlslsenarathna.mode.dto.LogInResponseDTO;
 import ecom.mlslsenarathna.service.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -17,7 +17,7 @@ public class AuthenticationController {
         authenticationService.setAuthentication(authenticationDTO);
     }
     @PutMapping("/checkPassword")
-    public LogInResponse checkPassword(@RequestBody LogInRequest logInRequest){
+    public LogInResponseDTO checkPassword(@RequestBody LogInRequestDTO logInRequest){
        return authenticationService.validateLogin(logInRequest.getNic(),logInRequest.getPassword());
 
     }

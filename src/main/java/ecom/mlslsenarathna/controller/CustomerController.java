@@ -37,15 +37,16 @@ public class CustomerController {
     public void updateCustomer(@RequestBody CustomerDTO customerDTO){
         customerService.updateCustomerInfo(customerDTO);
     }
-    @GetMapping("/registerNewCustomer")
-    public void registerNewCustomer(@RequestBody CustomerDTO customerDTO){
-        customerService.registerNewCustomer(customerDTO);
-    }
+    /*
+//    @GetMapping("/registerNewCustomer")
+//    public void registerNewCustomer(@RequestBody CustomerDTO customerDTO){
+//        customerService.registerNewCustomer(customerDTO);
+//    }
+
+     */
     @GetMapping("/getCustomerAddressByNic/{nic}")
     public AddressDTO getCustomerAddressBynic(@PathVariable String nic){
         return  addressService.getAddressByNic(nic);
     }
-
-
 
 }

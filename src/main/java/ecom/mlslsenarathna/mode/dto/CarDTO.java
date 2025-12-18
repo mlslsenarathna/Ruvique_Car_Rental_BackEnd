@@ -1,5 +1,6 @@
 package ecom.mlslsenarathna.mode.dto;
 
+import jakarta.persistence.Id;
 import lombok.*;
 
 @Setter
@@ -8,8 +9,10 @@ import lombok.*;
 @NoArgsConstructor
 @ToString
 public class CarDTO {
-    private String carId;
-    private String ownerId;
+    @Id
+    private int carId;
+    private String category;
+    private String nic;
     private String brand;
     private String model;
     private String year;

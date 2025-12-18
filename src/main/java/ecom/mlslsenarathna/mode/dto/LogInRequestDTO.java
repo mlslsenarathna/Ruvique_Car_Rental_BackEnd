@@ -7,7 +7,7 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-public class LogInRequest {
+public class LogInRequestDTO {
     private String nic;
     private String password;
 }

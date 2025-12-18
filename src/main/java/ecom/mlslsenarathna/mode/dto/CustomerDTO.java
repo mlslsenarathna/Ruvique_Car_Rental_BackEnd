@@ -13,4 +13,5 @@ public class CustomerDTO {
     private String email;
     private String nic;
     private String phone;
+    private String photoURL;
 }
