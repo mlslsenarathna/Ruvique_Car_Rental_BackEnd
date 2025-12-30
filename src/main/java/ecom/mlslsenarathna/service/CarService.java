@@ -27,4 +27,6 @@ public interface CarService {
     List<CarDTO> getCarByTransmission(String transmission);
 
     List<CarDTO> getCarByOwner(String nic);
+
+    List<CarDTO> getAllCars();
 }

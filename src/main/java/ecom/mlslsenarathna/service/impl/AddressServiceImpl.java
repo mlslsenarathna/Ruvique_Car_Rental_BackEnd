@@ -24,7 +24,7 @@ public class AddressServiceImpl implements AddressService {
     @Override
     public AddressDTO getAddressByNic(String nic) {
 
-        return null;
+        return mapper.map(addressRepository.findByNic(nic),AddressDTO.class);
     }
 
 }

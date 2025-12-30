@@ -8,6 +8,8 @@ import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CarOwnerServiceImpl implements CarOwnerService {
@@ -23,5 +25,16 @@ public class CarOwnerServiceImpl implements CarOwnerService {
     public int getNewOwnerId() {
         CarOwnerEntity carOwnerEntity=carOwnerRepository.findTopByOrderByOwnerIdDesc();
         return carOwnerEntity.getOwnerId()+1;
+    }
+
+    @Override
+    public CarOwnerDTO getCarOwnerByNIC(String nic) {
+        List<CarOwnerEntity> list=carOwnerRepository.findAll();
+        for (CarOwnerEntity carOwnerEntity:list){
+            if(carOwnerEntity.getNic().equalsIgnoreCase(nic)){
+                return mapper.map(carOwnerEntity,CarOwnerDTO.class);
+            }
+        }
+        return null;
     }
 }

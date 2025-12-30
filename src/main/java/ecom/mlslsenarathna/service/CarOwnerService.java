@@ -8,4 +8,6 @@ public interface CarOwnerService {
     void registerNewCarOwner(CarOwnerDTO carOwnerDTO);
 
     int getNewOwnerId();
+
+    CarOwnerDTO getCarOwnerByNIC(String nic);
 }

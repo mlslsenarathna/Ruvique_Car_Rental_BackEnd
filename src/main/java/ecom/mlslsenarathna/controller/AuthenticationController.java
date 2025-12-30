@@ -10,15 +10,16 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/authentication")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173/")
 public class AuthenticationController {
     final AuthenticationService authenticationService;
     @PutMapping("/setPassword")
     public void setPassword(@RequestBody AuthenticationDTO authenticationDTO){
         authenticationService.setAuthentication(authenticationDTO);
     }
-    @PutMapping("/checkPassword")
+    @PostMapping("/checkPassword")
     public LogInResponseDTO checkPassword(@RequestBody LogInRequestDTO logInRequest){
-       return authenticationService.validateLogin(logInRequest.getNic(),logInRequest.getPassword());
+       return authenticationService.validateLogin(logInRequest.getNic().trim(),logInRequest.getPassword().trim());
 
     }
 }

@@ -1,8 +1,6 @@
 package ecom.mlslsenarathna.controller;
 
-import ecom.mlslsenarathna.mode.dto.AddressDTO;
 import ecom.mlslsenarathna.mode.dto.CustomerDTO;
-import ecom.mlslsenarathna.repository.AddressRepository;
 import ecom.mlslsenarathna.service.AddressService;
 import ecom.mlslsenarathna.service.CustomerService;
 import lombok.RequiredArgsConstructor;
@@ -44,9 +42,8 @@ public class CustomerController {
 //    }
 
      */
-    @GetMapping("/getCustomerAddressByNic/{nic}")
-    public AddressDTO getCustomerAddressBynic(@PathVariable String nic){
-        return  addressService.getAddressByNic(nic);
+    @GetMapping("/getCustomerByNic/{nic}")
+    public CustomerDTO getCustomerAddressBynic(@PathVariable String nic) {
+        return customerService.getCustomerByNic(nic);
     }
-
 }

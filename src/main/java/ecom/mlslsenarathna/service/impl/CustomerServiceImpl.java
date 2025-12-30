@@ -57,6 +57,12 @@ public class CustomerServiceImpl implements CustomerService {
     }
 
     @Override
+    public CustomerDTO getCustomerByNic(String nic) {
+        CustomerEntity customerEntity=customerRepository.findByNic(nic);
+        return mapper.map(customerEntity,CustomerDTO.class);
+    }
+
+    @Override
     public void updateCustomerInfo(CustomerDTO customerDTO) {
         customerRepository.save(mapper.map(customerDTO,CustomerEntity.class));
     }
@@ -79,6 +85,12 @@ public class CustomerServiceImpl implements CustomerService {
 
         return (lastId+1);
     }
+
+//    @Override
+//    public CustomerDTO getCustomerByNIC(String nic) {
+//        return mapper.map(customerRepository.findBYnic(nic),CustomerDTO.class);
+//    }
+
     public CustomerEntity getLastCustomer(){
         return customerRepository.findTopByOrderByCustomerIdDesc();
     }

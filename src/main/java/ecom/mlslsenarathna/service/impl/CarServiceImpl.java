@@ -103,4 +103,16 @@ public class CarServiceImpl implements CarService {
         }
         return niclist;
     }
+
+    @Override
+    public List<CarDTO> getAllCars() {
+        List<CarEntity> list=carRepository.findAll();
+        List<CarDTO> dtolist=new ArrayList<>();
+        for (CarEntity carEntity:list){
+
+                dtolist.add(mapper.map(carEntity,CarDTO.class));
+
+        }
+        return dtolist;
+    }
 }

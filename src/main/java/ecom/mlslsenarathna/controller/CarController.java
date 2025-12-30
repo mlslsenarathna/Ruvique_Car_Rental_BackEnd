@@ -13,6 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/car")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5173/")
 public class CarController {
     final CarService carService;
 
@@ -51,11 +52,19 @@ public class CarController {
     public List<CarDTO> getCarByTransmission(@PathVariable String transmission){
         return  carService.getCarByTransmission(transmission.trim());
     }
+    @GetMapping("/getAllCars")
+    public List<CarDTO> getAllCars(){
+        return  carService.getAllCars();
+    }
     @GetMapping("/getCarsByOwner/{nic}")
     public List<CarDTO> getCarsByOwner(@PathVariable String nic){
         return  carService.getCarByOwner(nic);
     }
 
+    @GetMapping("/getCarById/{id}")
+    public CarDTO getCarById(@PathVariable String id){
+        return carService.getCarById(id.trim());
 
+    }
 
 }

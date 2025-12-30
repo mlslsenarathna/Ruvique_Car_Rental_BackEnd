@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/user")
 @RequiredArgsConstructor
+@CrossOrigin(origins = "http://localhost:5174/")
 public class UserController {
     final UserService userService;
     @PostMapping("/newRegistration")

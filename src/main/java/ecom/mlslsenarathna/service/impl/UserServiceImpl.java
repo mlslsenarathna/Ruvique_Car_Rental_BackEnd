@@ -41,7 +41,7 @@ public class UserServiceImpl implements UserService {
             ));
 
 
-        }else if(userDTO.getRole().equalsIgnoreCase("CarOwner")){
+        }else if(userDTO.getRole().equalsIgnoreCase("Car_Owner")){
             carOwnerService.registerNewCarOwner(new CarOwnerDTO(
                     carOwnerService.getNewOwnerId(),
                     userDTO.getName(),
